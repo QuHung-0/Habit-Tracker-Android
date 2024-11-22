@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "878030118871",
+    "firebase_url": "https://test-login-7cf08-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "test-login-7cf08",
+    "storage_bucket": "test-login-7cf08.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878030118871:android:b8aa0f4db17e7fd81ab592",
+        "android_client_info": {
+          "package_name": "com.example.Final_Project_Login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDudJN4gX7M2MB56hooLpcWB5yWB_Scxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878030118871:android:fa4dae4a2a6459de1ab592",
+        "android_client_info": {
+          "package_name": "ntu.hung.HabitTracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDudJN4gX7M2MB56hooLpcWB5yWB_Scxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
