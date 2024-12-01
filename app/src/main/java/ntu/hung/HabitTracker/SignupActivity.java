@@ -1,106 +1,78 @@
-package ntu.hung.HabitTracker;
+package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log; // Import Log để ghi lại log trong Logcat
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Intent; // Thư viện để làm việc với Intent
+import android.os.Bundle; // Thư viện để làm việc với dữ liệu truyền giữa các thành phần
+import android.widget.Button; // Thư viện cho giao diện nút bấm
+import android.widget.EditText; // Thư viện cho giao diện nhập văn bản
+import android.widget.TextView; // Thư viện cho giao diện hiển thị văn bản
+import android.widget.Toast; // Thư viện để hiển thị thông báo nhanh
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity; // Lớp cha cho Activity
 
-import com.google.firebase.auth.FirebaseAuth;
+// Lớp SignupActivity kế thừa AppCompatActivity để tạo giao diện đăng ký
+public class SignupActivity extends AppCompatActivity
+{
 
-public class SignupActivity extends AppCompatActivity {
-
-    // Đặt tag cho Logcat để dễ dàng nhận diện các log từ activity này
-    private static final String TAG = "SignupActivity";
-
-    // Khai báo các biến cần thiết cho giao diện người dùng và FirebaseAuth
-    private FirebaseAuth mAuth;
-    private EditText emailEditText, passwordEditText, confirmPasswordEditText;
-    private Button signupButton;
-    private TextView loginRedirectTextView;
+    private EditText emailEditText, passwordEditText, confirmPasswordEditText; // Ô nhập email, mật khẩu, xác nhận mật khẩu
+    private Button signupButton; // Nút đăng ký
+    private TextView loginRedirectTextView; // Văn bản dẫn đến trang đăng nhập
+    private Database dbHelper; // Đối tượng quản lý cơ sở dữ liệu
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState); // Gọi phương thức cha
+        setContentView(R.layout.activity_signup); // Gắn bố cục giao diện
 
-        // Ghi log khi Activity được tạo ra
-        Log.d(TAG, "onCreate: Initializing UI components...");
+        dbHelper = new Database(this); // Khởi tạo đối tượng cơ sở dữ liệu
 
-        // Khởi tạo FirebaseAuth và các thành phần giao diện
-        mAuth = FirebaseAuth.getInstance();
+        // Gán các thành phần giao diện vào biến
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
         signupButton = findViewById(R.id.signupButton);
         loginRedirectTextView = findViewById(R.id.loginRedirectTextView);
 
-        // Lắng nghe sự kiện khi người dùng nhấn nút Đăng ký
-        signupButton.setOnClickListener(v -> {
-            Log.d(TAG, "onClick: Signup button clicked");
-            signupUser();  // Gọi hàm đăng ký người dùng
+        // Xử lý khi nhấn nút đăng ký
+        signupButton.setOnClickListener(v -> registerUser());
+        // Xử lý khi nhấn vào liên kết đăng nhập
+        loginRedirectTextView.setOnClickListener(v ->
+        {
+            startActivity(new Intent(SignupActivity.this, LoginActivity.class)); // Chuyển sang LoginActivity
         });
-
-        // Lắng nghe sự kiện khi người dùng muốn chuyển đến màn hình đăng nhập
-        loginRedirectTextView.setOnClickListener(v -> {
-            Log.d(TAG, "onClick: Redirecting to LoginActivity");
-            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
-
-        // Kết nối với Firebase để kiểm tra kết nối
-        FirebaseAuth.getInstance().signInAnonymously()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "Firebase connection: Successful");
-                    } else {
-                        Log.e(TAG, "Firebase connection: Failed", task.getException());
-                    }
-                });
     }
 
-    // Hàm xử lý đăng ký người dùng
-    private void signupUser() {
-        Log.d(TAG, "signupUser: Starting signup process...");
+    // Phương thức xử lý đăng ký
+    private void registerUser()
+    {
+        String email = emailEditText.getText().toString().trim(); // Lấy email từ ô nhập
+        String password = passwordEditText.getText().toString().trim(); // Lấy mật khẩu từ ô nhập
+        String confirmPassword = confirmPasswordEditText.getText().toString().trim(); // Lấy mật khẩu xác nhận
 
-        // Lấy dữ liệu người dùng nhập vào
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
-
-        // Kiểm tra các trường nhập liệu có bị bỏ trống không
-        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            Log.w(TAG, "signupUser: Empty fields detected");
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();  // Thông báo người dùng
+        // Kiểm tra nếu các trường trống
+        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty())
+        {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Kiểm tra mật khẩu và xác nhận mật khẩu có trùng khớp không
-        if (!password.equals(confirmPassword)) {
-            Log.w(TAG, "signupUser: Passwords do not match");
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();  // Thông báo lỗi mật khẩu không trùng khớp
+        // Kiểm tra nếu mật khẩu và xác nhận mật khẩu không khớp
+        if (!password.equals(confirmPassword))
+        {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Ghi log khi bắt đầu tạo người dùng mới
-        Log.d(TAG, "signupUser: Attempting to create user with email: " + email);
-
-        // Tạo người dùng mới bằng Firebase Authentication
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "signupUser: User created successfully");
-                        Toast.makeText(this, "Signup Successful!", Toast.LENGTH_SHORT).show();
-                        // Sau khi đăng ký thành công, chuyển đến màn hình đăng nhập
-                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
-                    } else {
-                        Log.e(TAG, "signupUser: Signup failed", task.getException());
-                        Toast.makeText(this, "Signup Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();  // Thông báo lỗi khi đăng ký thất bại
-                    }
-                });
+        // Thêm người dùng vào cơ sở dữ liệu
+        boolean isInserted = dbHelper.insertUser(email, password); // Gọi hàm thêm người dùng trong cơ sở dữ liệu
+        if (isInserted)
+        { // Nếu thêm thành công
+            Toast.makeText(this, "Sign Up Successful!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(SignupActivity.this, LoginActivity.class)); // Chuyển sang LoginActivity
+        }
+        else
+        { // Nếu thêm thất bại
+            Toast.makeText(this, "Sign Up Failed. Try Again!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

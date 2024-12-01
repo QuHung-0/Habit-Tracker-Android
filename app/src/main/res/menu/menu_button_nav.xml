@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item android:title="Mood"
+		android:icon="@drawable/baseline_insert_emoticon_24"
+		android:id="@+id/menu_mood"/>
+
+	<item android:title="Habit"
+		android:icon="@drawable/baseline_check_24"
+		android:id="@+id/menu_habit"/>
+
+</menu>

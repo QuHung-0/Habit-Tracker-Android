@@ -1,77 +1,69 @@
-package ntu.hung.HabitTracker;
+package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
 
+import android.content.Intent; // Thư viện để làm việc với Intent (chuyển Activity)
+import android.os.Bundle; // Thư viện để làm việc với dữ liệu truyền giữa các thành phần
+import android.widget.Button; // Thư viện cho giao diện nút bấm
+import android.widget.EditText; // Thư viện cho giao diện nhập văn bản
+import android.widget.TextView; // Thư viện cho giao diện hiển thị văn bản
+import android.widget.Toast; // Thư viện để hiển thị thông báo nhanh
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity; // Lớp cha cho Activity
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+// Lớp LoginActivity kế thừa AppCompatActivity để tạo giao diện đăng nhập
+public class LoginActivity extends AppCompatActivity
+{
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-
-public class LoginActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;  // Khai báo FirebaseAuth để xác thực người dùng
-    private EditText emailEditText, passwordEditText; // Các trường nhập liệu
-    private Button loginButton;  // Nút đăng nhập
-    private TextView signupRedirectTextView;  // Văn bản điều hướng đến màn hình đăng ký
+    private EditText emailEditText, passwordEditText; // Ô nhập email và mật khẩu
+    private Button loginButton; // Nút đăng nhập
+    private TextView signupRedirectTextView; // Văn bản dẫn đến trang đăng ký
+    private Database dbHelper; // Đối tượng quản lý cơ sở dữ liệu
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        FirebaseApp.initializeApp(this);  // Khởi tạo FirebaseApp trước khi sử dụng FirebaseAuth
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState); // Gọi phương thức cha
+        setContentView(R.layout.activity_login); // Gắn bố cục giao diện
 
-        // Khởi tạo FirebaseAuth và các thành phần giao diện
-        mAuth = FirebaseAuth.getInstance();
+        dbHelper = new Database(this); // Khởi tạo đối tượng cơ sở dữ liệu
+
+        // Gán các thành phần giao diện vào biến
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
         signupRedirectTextView = findViewById(R.id.signupRedirectTextView);
 
-        // Lắng nghe sự kiện khi người dùng nhấn nút Đăng nhập
+        // Xử lý khi nhấn nút đăng nhập
         loginButton.setOnClickListener(v -> loginUser());
-
-        // Lắng nghe sự kiện khi người dùng muốn chuyển đến màn hình đăng ký
-        signupRedirectTextView.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-            startActivity(intent);  // Chuyển sang màn hình đăng ký
+        // Xử lý khi nhấn vào liên kết đăng ký
+        signupRedirectTextView.setOnClickListener(v ->
+        {
+            startActivity(new Intent(LoginActivity.this, SignupActivity.class)); // Chuyển sang SignupActivity
         });
     }
 
-    // Hàm xử lý đăng nhập người dùng
-    private void loginUser() {
-        // Lấy dữ liệu người dùng nhập vào
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+    // Phương thức xử lý đăng nhập
+    private void loginUser()
+    {
+        String email = emailEditText.getText().toString().trim(); // Lấy email từ ô nhập
+        String password = passwordEditText.getText().toString().trim(); // Lấy mật khẩu từ ô nhập
 
-        // Kiểm tra các trường nhập liệu có bị bỏ trống không
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();  // Thông báo lỗi khi thiếu thông tin
+        // Kiểm tra nếu các trường trống
+        if (email.isEmpty() || password.isEmpty())
+        {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Ghi log khi bắt đầu quá trình đăng nhập
-        Log.d("LoginActivity", "loginUser: Attempting to log in with email: " + email);
-
-        // Đăng nhập với Firebase Authentication
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        // Nếu đăng nhập thành công, chuyển đến màn hình chính (MainActivity)
-                        Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    } else {
-                        // Nếu đăng nhập thất bại, thông báo lỗi cho người dùng
-                        Toast.makeText(this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+        // Xác thực người dùng
+        boolean isValid = dbHelper.validateUser(email, password); // Gọi hàm kiểm tra trong cơ sở dữ liệu
+        if (isValid)
+        { // Nếu thông tin đúng
+            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class)); // Chuyển sang MainActivity
+        }
+        else
+        { // Nếu thông tin sai
+            Toast.makeText(this, "Invalid Email or Password!", Toast.LENGTH_LONG).show();
+        }
     }
 }
-

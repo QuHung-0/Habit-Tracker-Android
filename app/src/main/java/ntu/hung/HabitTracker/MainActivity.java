@@ -1,48 +1,29 @@
-package ntu.hung.HabitTracker;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log; // For debugging
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
 
-import java.util.ArrayList;
-import java.util.List;
+import android.os.Bundle; // Thư viện để làm việc với dữ liệu chuyển giữa các thành phần
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity; // Lớp cha cho Activity
+import androidx.navigation.NavController; // Thư viện điều hướng Fragment
+import androidx.navigation.Navigation; // Thư viện hỗ trợ điều hướng
+import androidx.navigation.ui.NavigationUI; // Thư viện UI cho điều hướng
 
-    private static final String TAG = "MainActivity";
-    private RecyclerView habitRecyclerView;
-    private HabitAdapter habitAdapter;
-    public static List<Habit> habitList = new ArrayList<>(); // Static to share between activities
+import com.google.android.material.bottomnavigation.BottomNavigationView; // Giao diện thanh điều hướng dưới cùng
+
+// Lớp MainActivity kế thừa AppCompatActivity để quản lý màn hình chính
+public class MainActivity extends AppCompatActivity
+{
+    BottomNavigationView bottomNavigationView; // Thanh điều hướng dưới cùng
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate called");
-        setContentView(R.layout.activity_main);
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState); // Gọi phương thức cha
+        setContentView(R.layout.activity_main); // Gắn bố cục giao diện
 
-        habitRecyclerView = findViewById(R.id.habitRecyclerView);
-        findViewById(R.id.addHabitButton).setOnClickListener(v -> {
-            Log.d(TAG, "Add Habit button clicked");
-            Intent intent = new Intent(MainActivity.this, AddHabitActivity.class);
-            startActivity(intent);
-        });
+        bottomNavigationView = findViewById(R.id.bottom_nav); // Kết nối với thành phần giao diện
 
-        // Set up RecyclerView
-        Log.d(TAG, "Setting up RecyclerView and Adapter");
-        habitAdapter = new HabitAdapter(habitList);
-        habitRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        habitRecyclerView.setAdapter(habitAdapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume called - refreshing habit list");
-        // Refresh the habit list after returning from AddHabitActivity
-        habitAdapter.notifyDataSetChanged();
+        // Thiết lập điều hướng với thanh điều hướng dưới cùng
+        NavController navController = Navigation.findNavController(MainActivity.this, R.id.fragment_container);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController); // Kết nối thanh điều hướng với điều hướng
     }
 }
-
-
