@@ -1,4 +1,6 @@
 # Habit-Tracker-Android
+<img src="(https://github.com/QuHung-0/Habit-Tracker-Android/blob/main/IMG/Login.png)" alt="Description of image" width="200"/>
+
 ![image alt](https://github.com/QuHung-0/Habit-Tracker-Android/blob/main/IMG/Login.png)
 ![image alt](https://github.com/QuHung-0/Habit-Tracker-Android/blob/main/IMG/Register.png)
 ![image alt](https://github.com/QuHung-0/Habit-Tracker-Android/blob/main/IMG/Habit.png)
