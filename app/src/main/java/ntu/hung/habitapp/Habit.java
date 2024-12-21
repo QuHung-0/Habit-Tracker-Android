@@ -1,4 +1,5 @@
-package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
+package ntu.hung.habitapp;
+
 
 public class Habit {
     private int id; // ID của thói quen

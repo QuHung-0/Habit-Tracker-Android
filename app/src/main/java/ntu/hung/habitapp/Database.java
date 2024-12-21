@@ -1,4 +1,4 @@
-package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
+package ntu.hung.habitapp;
 
 // Import các thư viện cần thiết để làm việc với Android và SQLite
 
@@ -252,7 +252,3 @@ public class Database extends SQLiteOpenHelper
 
     //===============PHẦN KẾT THÚC TẠO CẢM XÚC===============//
 }
-
-
-
-

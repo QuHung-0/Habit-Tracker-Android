@@ -1,9 +1,24 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<!-- Base application theme. -->
-	<style name="Base.Theme.HabitTracker" parent="Theme.Material3.DayNight.NoActionBar">
-		<!-- Customize your light theme here. -->
-		<!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+	<style name="Base.Theme.HabitApp" parent="Theme.Material3.DayNight.NoActionBar">
+		<!-- Primary brand color -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+		<item name="android:statusBarColor">@color/colorPrimary
+		</item> <!-- Navigation bar color -->
+		<item name="android:navigationBarColor">@color/colorPrimary
+		</item> <!-- Customizing component colors -->
+		<item name="colorControlNormal">@color/colorPrimary</item>
+		<item name="colorControlActivated">@color/colorPrimary</item>
+		<item name="colorControlHighlight">@color/colorPrimary</item>
+		<item name="colorButtonNormal">@color/colorPrimary</item>
 	</style>
 
-	<style name="Theme.HabitTracker" parent="Base.Theme.HabitTracker" />
+	<style name="CheckboxStyle" parent="Theme.AppCompat.Light">
+		<item name="colorControlNormal">@color/colorPrimary</item>
+		<item name="colorControlActivated">@color/colorPrimaryDark</item>
+	</style>
+
+	<style name="Theme.HabitApp" parent="Base.Theme.HabitApp" />
 </resources>

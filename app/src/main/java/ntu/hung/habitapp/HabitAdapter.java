@@ -1,4 +1,3 @@
-package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
 package ntu.hung.habitapp;
 
 import android.view.LayoutInflater;

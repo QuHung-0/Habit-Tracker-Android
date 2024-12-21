@@ -1,14 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "ntu.hung.HabitTracker"
+    namespace = "ntu.hung.habitapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ntu.hung.HabitTracker"
+        applicationId = "ntu.hung.habitapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -33,17 +32,13 @@ android {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
 
-    implementation("com.google.firebase:firebase-auth")
-
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
-
-    implementation ("com.google.firebase:firebase-firestore:24.6.0") // Latest version
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

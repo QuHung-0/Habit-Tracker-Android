@@ -16,7 +16,7 @@
 		android:src="@drawable/ic_logo_square"
 		android:contentDescription="App Logo" />
 
-	<!-- Email EditText -->
+	<!-- Title TextView -->
 	<TextView
 		android:id="@+id/textView"
 		android:layout_width="wrap_content"
@@ -25,8 +25,9 @@
 		android:layout_centerHorizontal="true"
 		android:textSize="32sp"
 		android:textColor="@color/colorPrimary"
-		android:text="HABIT" />
+		android:text="REGISTER" />
 
+	<!-- Email EditText -->
 	<EditText
 		android:id="@+id/et_email"
 		android:layout_width="match_parent"
@@ -37,8 +38,7 @@
 		android:textColorHint="@color/colorPrimary"
 		android:textColor="@color/colorPrimary"
 		android:padding="12dp"
-		android:background="@drawable/rounded_edittext"
-/>
+		android:background="@drawable/rounded_edittext" />
 
 	<!-- Password EditText -->
 	<EditText
@@ -52,29 +52,17 @@
 		android:textColor="@color/colorPrimary"
 		android:inputType="textPassword"
 		android:padding="12dp"
-		android:background="@drawable/rounded_edittext"
-		/>
+		android:background="@drawable/rounded_edittext" />
 
-	<!-- Login Button -->
+	<!-- Register Button -->
 	<Button
-		android:id="@+id/btn_login"
+		android:id="@+id/btn_register"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/et_password"
 		android:layout_marginTop="30dp"
-		android:text="Login"
-		android:textColor="@color/white"
+		android:text="Register"
+		android:textColor="@android:color/white"
+		android:backgroundTint="@color/colorPrimary"
 		android:background="@drawable/rounded_button" />
-
-	<!-- Register TextView -->
-	<TextView
-		android:id="@+id/tv_register"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/btn_login"
-		android:layout_marginTop="20dp"
-		android:text="Don't have an account? Register"
-		android:textAlignment="center"
-		android:textColor="@color/colorPrimary"
-		android:paddingTop="16dp" />
 </RelativeLayout>
