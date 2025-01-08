@@ -7,13 +7,13 @@
 
 	<fragment
 		android:id="@+id/menu_mood"
-		android:name="ntu.hung.habitapp.MoodFragment"
+		android:name="ntu.hung.habitapp.Mood.MoodFragment"
 		android:label="fragment_mood"
 		tools:layout="@layout/fragment_mood" />
 
 	<fragment
 		android:id="@+id/menu_habit"
-		android:name="ntu.hung.habitapp.HabitFragment"
+		android:name="ntu.hung.habitapp.Habit.HabitFragment"
 		android:label="fragment_habit"
 		tools:layout="@layout/fragment_habit" />
 

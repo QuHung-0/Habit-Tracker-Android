@@ -1,4 +1,4 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Habit;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
+
+import ntu.hung.habitapp.R;
 
 // Adapter để quản lý danh sách thói quen hiển thị trong RecyclerView
 public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.HabitViewHolder> {

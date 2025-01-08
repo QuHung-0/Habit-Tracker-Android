@@ -1,4 +1,4 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Mood;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -18,6 +18,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import java.util.Calendar;
+
+import ntu.hung.habitapp.R;
+import ntu.hung.habitapp.Utils.Database;
+import ntu.hung.habitapp.Utils.DateUtils;
 
 // MoodFragment quản lý giao diện theo dõi tâm trạng và các tương tác của người dùng
 public class MoodFragment extends Fragment

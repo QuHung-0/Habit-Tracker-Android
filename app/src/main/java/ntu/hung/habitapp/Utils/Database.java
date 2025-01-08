@@ -1,4 +1,4 @@
-package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
+package ntu.hung.habitapp.Utils;
 
 // Import các thư viện cần thiết để làm việc với Android và SQLite
 
@@ -12,6 +12,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import ntu.hung.habitapp.Habit.Habit;
+import ntu.hung.habitapp.Mood.Mood;
+
 // Lớp Database kế thừa SQLiteOpenHelper để quản lý cơ sở dữ liệu
 public class Database extends SQLiteOpenHelper
 {
@@ -19,7 +22,7 @@ public class Database extends SQLiteOpenHelper
     //================PHẦN BẮT ĐẦU CƠ SỞ DỮ LIỆU=================//
 
     // Tên của cơ sở dữ liệu
-    private static final String DATABASE_NAME = "BeAllEndAllApp.db";
+    private static final String DATABASE_NAME = "App.db";
 
     // Phiên bản của cơ sở dữ liệu
     private static final int DATABASE_VERSION = 1;
@@ -252,7 +255,3 @@ public class Database extends SQLiteOpenHelper
 
     //===============PHẦN KẾT THÚC TẠO CẢM XÚC===============//
 }
-
-
-
-

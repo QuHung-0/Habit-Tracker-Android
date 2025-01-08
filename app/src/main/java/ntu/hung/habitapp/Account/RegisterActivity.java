@@ -1,4 +1,4 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Account;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -6,6 +6,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ntu.hung.habitapp.R;
+import ntu.hung.habitapp.Utils.Database;
 
 // Lớp RegisterActivity xử lý giao diện và logic đăng ký người dùng
 public class RegisterActivity extends AppCompatActivity {

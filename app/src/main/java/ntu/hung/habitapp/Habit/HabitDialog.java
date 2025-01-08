@@ -1,11 +1,10 @@
-package ntu.hung.HabitTracker; // Khai báo gói chứa các lớp trong dự án
+package ntu.hung.habitapp.Habit;
+
 import android.app.Dialog; // Import lớp Dialog để tạo hộp thoại tùy chỉnh
 import android.content.Context; // Import Context để truyền ngữ cảnh
 import android.os.Bundle; // Import Bundle để truyền dữ liệu khi tạo Activity/Fragment
-import android.view.View; // Import View để xử lý giao diện người dùng
 import android.widget.Button; // Import Button để xử lý các nút bấm
 import android.widget.EditText; // Import EditText để nhập dữ liệu
-import android.widget.RadioButton; // Import RadioButton để tạo lựa chọn
 import android.widget.RadioGroup; // Import RadioGroup để nhóm các RadioButton
 
 import androidx.annotation.NonNull; // Import annotation để đảm bảo các tham số không null
@@ -13,6 +12,8 @@ import androidx.annotation.NonNull; // Import annotation để đảm bảo các
 import java.text.SimpleDateFormat; // Import để định dạng ngày
 import java.util.Calendar; // Import để làm việc với thời gian
 import java.util.Locale; // Import để thiết lập định dạng theo ngôn ngữ
+
+import ntu.hung.habitapp.R;
 
 // Lớp HabitDialog để hiển thị và xử lý hộp thoại thêm/sửa thói quen
 public class HabitDialog extends Dialog {
@@ -136,4 +137,3 @@ public class HabitDialog extends Dialog {
         void onHabitSaved(Habit habit, boolean isEditMode); // Phương thức gọi lại khi thói quen được lưu
     }
 }
-

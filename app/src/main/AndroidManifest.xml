@@ -13,7 +13,7 @@
 		android:theme="@style/Theme.HabitApp"
 		tools:targetApi="31">
 		<activity
-			android:name=".LoginActivity"
+			android:name=".Account.LoginActivity"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -21,8 +21,8 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".RegisterActivity"/>
-		<activity android:name=".MainActivity"/>
+		<activity android:name=".Account.RegisterActivity"/>
+		<activity android:name=".Utils.MainActivity"/>
 	</application>
 
 </manifest>

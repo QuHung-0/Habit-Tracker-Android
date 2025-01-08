@@ -1,4 +1,4 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Account;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ntu.hung.habitapp.Utils.MainActivity;
+import ntu.hung.habitapp.R;
+import ntu.hung.habitapp.Utils.Database;
 
 public class LoginActivity extends AppCompatActivity
 {

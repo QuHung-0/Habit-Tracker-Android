@@ -1,4 +1,4 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Mood;
 
 public class Mood {
     private int id; // ID của cảm xúc

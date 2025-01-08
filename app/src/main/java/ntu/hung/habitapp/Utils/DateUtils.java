@@ -1,10 +1,8 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Utils;
 
 // Tiện ích liên quan đến xử lý ngày tháng
 public class DateUtils
 {
-
-    //================= PHẦN BẮT ĐẦU MOOD =================//
 
     // Chuyển đổi ngày theo định dạng ISO (YYYY/MM/DD) sang định dạng hiển thị (DD/MM/YYYY)
     public static String formatDisplayDate(String isoDate)
@@ -24,6 +22,5 @@ public class DateUtils
         return String.format("%04d/%02d/%02d", year, month + 1, day);
     }
 
-    //================= PHẦN KẾT THÚC MOOD =================//
 }
 

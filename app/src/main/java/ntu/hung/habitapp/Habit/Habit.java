@@ -1,7 +1,8 @@
-package ntu.hung.habitapp;
+package ntu.hung.habitapp.Habit;
 
 
-public class Habit {
+public class Habit
+{
     private int id; // ID của thói quen
     private int userId; // ID của người dùng
     private String habitName; // Tên thói quen
@@ -12,12 +13,14 @@ public class Habit {
     private String endDate; // Ngày kết thúc
 
     // Constructor mặc định
-    public Habit() {
+    public Habit()
+    {
         // Khởi tạo với giá trị mặc định nếu cần
     }
 
     // Constructor có tham số
-    public Habit(int id, int userId, String habitName, String habitDescription, int status, String timePeriod, String beginDate, String endDate) {
+    public Habit(int id, int userId, String habitName, String habitDescription, int status, String timePeriod, String beginDate, String endDate)
+    {
         this.id = id;
         this.userId = userId;
         this.habitName = habitName;
@@ -29,67 +32,83 @@ public class Habit {
     }
 
     // Các hàm getter và setter cho các thuộc tính
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public int getUserId() {
+    public int getUserId()
+    {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(int userId)
+    {
         this.userId = userId;
     }
 
-    public String getHabitName() {
+    public String getHabitName()
+    {
         return habitName;
     }
 
-    public void setHabitName(String habitName) {
+    public void setHabitName(String habitName)
+    {
         this.habitName = habitName;
     }
 
-    public String getHabitDescription() {
+    public String getHabitDescription()
+    {
         return habitDescription;
     }
 
-    public void setHabitDescription(String habitDescription) {
+    public void setHabitDescription(String habitDescription)
+    {
         this.habitDescription = habitDescription;
     }
 
-    public int getStatus() {
+    public int getStatus()
+    {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
 
-    public String getTimePeriod() {
+    public String getTimePeriod()
+    {
         return timePeriod;
     }
 
-    public void setTimePeriod(String timePeriod) {
+    public void setTimePeriod(String timePeriod)
+    {
         this.timePeriod = timePeriod;
     }
 
-    public String getBeginDate() {
+    public String getBeginDate()
+    {
         return beginDate;
     }
 
-    public void setBeginDate(String beginDate) {
+    public void setBeginDate(String beginDate)
+    {
         this.beginDate = beginDate;
     }
 
-    public String getEndDate() {
+    public String getEndDate()
+    {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(String endDate)
+    {
         this.endDate = endDate;
     }
 }
